@@ -26,7 +26,10 @@ for category, count in all_categories.items():
 print(histogram)
 
 category_id_map = {}
+category_list = []
 for category, _ in all_categories.items():
   category_id_map[category] = len(category_id_map)
+  category_list.append(category)
 
 json.dump(category_id_map, open("data/category_id_map.json", "w"))
+json.dump(category_list, open("data/category_list.json", "w"))
