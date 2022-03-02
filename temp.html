@@ -1,28 +1,10 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="js/d3.v7.min.js"></script>
-  </head>
-  <body>
-    <nav>
-      <div id="title">WikiHow - Step-by-step visualization</div>
-      <a class="link" href="">Paper</a>
-      <a class="link" href="">Contact</a>
-      <button class="link" id="temp-button">Temp</button>
-      <form id="search-form">
-        <input name="search" placeholder="Type something to search..." />
-        <button type="submit">
-          <i class="fa fa-search"></i>
-        </buttom>
-      </form>
-    </nav>
-    <main>
-      <svg id="viz-canvas"></svg>
-    </main>
-    <script>
+<meta charset="utf-8">
+
+<svg width="960" height="600"></svg>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
 var baseNodes = [
   { id: "mammal", group: 0, label: "Mammals", level: 1 },
   { id: "dog"   , group: 0, label: "Dogs"   , level: 2 },
@@ -38,8 +20,8 @@ var baseNodes = [
 ]
 
 var baseLinks = [
-  { target: "mammal", source: "dog" , strength: 0.7 },
-  { target: "mammal", source: "cat" , strength: 0.7 },
+	{ target: "mammal", source: "dog" , strength: 0.7 },
+	{ target: "mammal", source: "cat" , strength: 0.7 },
   { target: "mammal", source: "fox" , strength: 0.7 },
   { target: "mammal", source: "elk" , strength: 0.7 },
   { target: "insect", source: "ant" , strength: 0.7 },
@@ -51,7 +33,7 @@ var baseLinks = [
   { target: "elk"   , source: "bee" , strength: 0.1 },
   { target: "dog"   , source: "cat" , strength: 0.1 },
   { target: "fox"   , source: "ant" , strength: 0.1 },
-  { target: "pike"  , source: "cat" , strength: 0.1 }
+	{ target: "pike"  , source: "cat" , strength: 0.1 }
 ]
 
 var nodes = [...baseNodes]
@@ -95,7 +77,7 @@ function getTextColor(node, neighbors) {
 var width = window.innerWidth
 var height = window.innerHeight
 
-var svg = d3.select('#viz-canvas')
+var svg = d3.select('svg')
 svg.attr('width', width).attr('height', height)
 
 var linkElements,
@@ -114,8 +96,8 @@ var selectedId
 // simulation setup with all forces
 var linkForce = d3
   .forceLink()
-  .id(function (link) { return link.id })
-  .strength(function (link) { return link.strength })
+  .id(function (link) { return link.id })
+  .strength(function (link) { return link.strength })
 
 var simulation = d3
   .forceSimulation()
@@ -155,7 +137,7 @@ function selectNode(selectedNode) {
   var neighbors = getNeighbors(selectedNode)
 
   // we modify the styles to highlight selected nodes
-  nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors) })
+  nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors) })
   textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
   linkElements.attr('stroke', function (link) { return getLinkColor(selectedNode, link) })
 }
@@ -269,6 +251,5 @@ function updateSimulation() {
 // last but not least, we call updateSimulation
 // to trigger the initial render
 updateSimulation()
-    </script>
-  </body>
-</html>
+
+</script>
