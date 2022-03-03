@@ -216,6 +216,7 @@ main {
 
 #left-inner, #right-inner {
   min-height: 100%;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
