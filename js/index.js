@@ -44,7 +44,7 @@ class Visualizer {
     // Push history
     var new_url = new URL(window.location.href);
     new_url.search = `?task_id=${datapoint.task_id}`;
-    window.history.pushState({ path: new_url.href }, '', new_url.href);
+    window.history.pushState({ path: new_url.href }, "", new_url.href);
 
     // Get the data
     let data = dataset.get_card_data(datapoint, "middle");
@@ -57,7 +57,8 @@ class Visualizer {
       let step_id = caption.step_id;
       if (step_id && caption.has_sub_steps) {
         $(`#middle-caption-${step_id}`).click(() => {
-          this.visualize_step(datapoint, step_id, dataset);
+          let new_datapoint = new Datapoint(datapoint.task_id, step_id, datapoint.parent_datapoint);
+          this.visualize(new_datapoint, dataset);
         });
       }
     });
