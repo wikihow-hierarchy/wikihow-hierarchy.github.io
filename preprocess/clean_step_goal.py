@@ -1,4 +1,5 @@
 import json
+from argparse import ArgumentParser
 from tqdm import tqdm
 
 class Dataset:
@@ -92,8 +93,12 @@ class Processor:
     return self.processed_step_predictions
 
 
+parser = ArgumentParser()
+parser.add_argument("--initial-count", type=int, default=1000)
+args = parser.parse_args()
+
 dataset = Dataset()
-processor = Processor()
+processor = Processor(num_to_keep=args.initial_count)
 processor.start_iteration(dataset)
 
 json.dump(processor.extract_step_goals(), open("data/preprocessed_step_goals.json", "w"))
