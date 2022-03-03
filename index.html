@@ -20,34 +20,43 @@
       </form>
     </nav>
     <main>
-      <div id="left"></div>
+      <div id="left">
+        <div id="left-inner"></div>
+      </div>
       <svg id="line-canvas"></svg>
-      <div id="right"></div>
+      <div id="right">
+        <div id="right-inner"></div>
+      </div>
     </main>
     <script id="card" type="text/x-jsrender">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">{{:title}}</div>
-          <div class="card-id">
-            <div>{{:id}}</div>
-          </div>
+      <div class="card" id="{{:elem_id}}">
+        <div class="card-left">
+          <div class="card-left-anchor"></div>
         </div>
-        <div class="card-tags">{{for tags}}
-          <div class="card-tag-outer">
-            <span class="card-tag">{{:name}}</span>
+        <div class="card-right">
+          <div class="card-header">
+            <div class="card-title">{{:title}}</div>
+            <div class="card-id">
+              <div>{{:task_id}}</div>
+            </div>
           </div>
-        {{/for}}</div>
-        <div class="card-body">
-          <ol class="card-section-captions">{{for captions}}
-            <li id="{{:elem_id}}">
-              <a class="card-section-caption">
-                <div class="card-section-caption-title">{{:caption}}</div>
-                <div class="card-section-caption-anchor">
-                  <span class="card-section-caption-anchor-circle"></span>
-                </div>
-              </a>
-            </li>
-          {{/for}}</ol>
+          <div class="card-tags">{{for tags}}
+            <div class="card-tag-outer">
+              <span class="card-tag">{{:name}}</span>
+            </div>
+          {{/for}}</div>
+          <div class="card-body">
+            <ol class="card-section-captions">{{for captions}}
+              <li id="{{:elem_id}}">
+                <a class="card-section-caption">
+                  <div class="card-section-caption-title">{{:caption}}</div>
+                  <div class="card-section-caption-anchor">
+                    <span class="card-section-caption-anchor-circle {{if has_sub_steps}}active{{/if}}"></span>
+                  </div>
+                </a>
+              </li>
+            {{/for}}</ol>
+          </div>
         </div>
       </div>
     </script>
@@ -79,44 +88,106 @@
       class Visualizer {
         constructor() {
           this.card_template = $.templates("#card");
-          this.current_datapoint = null;
         }
 
         visualize(datapoint, dataset) {
-          // Set the current datapoint
-          this.current_datapoint = datapoint;
-
           // Get the data
-          let data = dataset.get_card_data(datapoint);
+          let data = dataset.get_card_data(datapoint, "left");
 
           // Render the object onto the page
-          $("#left").html(this.card_template.render(data));
+          $("#left-inner").html(this.card_template.render(data));
 
           // Setup the callbacks
           data.captions.forEach((caption) => {
             let step_id = caption.step_id;
-            if (step_id) {
+            if (step_id && caption.has_sub_steps) {
               $(`#left-caption-${step_id}`).click(() => {
                 this.visualize_step(step_id, dataset);
               });
             }
           });
+
+          // If the step id is present, directly visualize that step
+          if (datapoint.step_id != null) {
+            this.visualize_step(datapoint.step_id, dataset);
+          } else {
+            $("#right-inner").html("");
+          }
         }
 
         visualize_step(step_id, dataset) {
+          // Highlight the step in the left
+          $(`#left-caption-${step_id}`).addClass("active").siblings().removeClass("active");
+
           // Clear the right
-          $("#right").html("");
+          $("#right-inner").html("");
 
           // Get all the predictions
           let predictions = dataset.step_predictions[`${step_id}`]["pred"];
 
-          // For each
+          // For each prediction
           predictions.forEach((prediction) => {
             let task_id = prediction[0];
             let datapoint = new Datapoint(task_id, null);
-            let data = dataset.get_card_data(datapoint);
-            $("#right").append(this.card_template.render(data));
+            let data = dataset.get_card_data(datapoint, `right-${task_id}`);
+            $("#right-inner").append(this.card_template.render(data));
+
+            // Setup the callbacks
+            data.captions.forEach((caption) => {
+              let step_id = caption.step_id;
+              if (step_id && caption.has_sub_steps) {
+                $(`#right-${task_id}-caption-${step_id}`).click(() => {
+                  let subtask_datapoint = new Datapoint(task_id, step_id);
+                  this.visualize(subtask_datapoint, dataset);
+                });
+              }
+            });
           });
+
+          // Setup a scroll callback
+          let draw = () => {
+            let svg_elem = $("#line-canvas");
+            let svg_x = svg_elem.position().left;
+            let svg_y = svg_elem.position().top;
+
+            // Get d3 svg and clear the canvas
+            let svg = d3.select("#line-canvas");
+            svg.selectAll('*').remove();
+
+            // Get left element
+            let left_elem = $(`#left-caption-${step_id} .card-section-caption-anchor-circle`);
+            let left_elem_position = left_elem.position();
+            let left_x = left_elem_position.left - svg_x + 16;
+            let left_y = left_elem_position.top - svg_y + 6;
+            predictions.forEach((p) => {
+              let right_elem = $(`#right-${p[0]}-card .card-left-anchor`);
+              let right_elem_position = right_elem.position();
+              let right_x = right_elem_position.left - svg_x + 16;
+              let right_y = right_elem_position.top - svg_y + 6;
+
+              svg
+                .append('line')
+                .style("stroke", "red")
+                .style("stroke-width", 2)
+                .attr("x1", left_x)
+                .attr("y1", left_y)
+                .attr("x2", right_x)
+                .attr("y2", right_y);
+
+              let text_y = right_y > left_y ? right_y + 20 : right_y - 10;
+              svg
+                .append("text")
+                .text(`${p[1]}`.substring(0, 7))
+                .style("font-size", "18px")
+                .style("font-weight", "bold")
+                .style("fill", "red")
+                .attr("x", right_x - 85)
+                .attr("y", text_y);
+            });
+          };
+          $("#right").unbind("scroll").scroll(draw);
+          $("#left").unbind("scroll").scroll(draw);
+          draw();
         }
       }
 
@@ -140,20 +211,23 @@
           return new Datapoint(i, null);
         }
 
-        get_card_data(datapoint) {
+        get_card_data(datapoint, caption_id_prefix) {
           let task = this.step_goals[datapoint.task_id];
           return {
             title: task["task"],
-            id: datapoint.task_id,
+            elem_id: `${caption_id_prefix}-card`,
+            task_id: datapoint.task_id,
             tags: task["category"].map((c) => {
               return {name: this.category_list[c]};
             }),
             captions: task["caption"].map((c) => {
               if (Number.isInteger(c)) {
+                let pred = this.step_predictions[`${c}`];
                 return {
-                  caption: this.step_predictions[`${c}`]["name"],
+                  caption: pred.name,
                   step_id: c,
-                  elem_id: `left-caption-${c}`,
+                  has_sub_steps: pred.pred.length > 0,
+                  elem_id: `${caption_id_prefix}-caption-${c}`,
                 }
               } else {
                 return {caption: c}
@@ -164,28 +238,11 @@
       }
 
       class Datapoint {
-        constructor(task_id, caption_id) {
+        constructor(task_id, step_id) {
           this.task_id = `${task_id}`;
-          this.caption_id = caption_id;
+          this.step_id = step_id;
         }
       }
-
-      // let card_template = $.templates("#card");
-      // let left_data = {
-      //   title: "How to use a camera",
-      //   id: "32",
-      //   tags: [{name: "Photography"}, {name: "Outdoor activity"}],
-      //   captions: [
-      //     // {text: "Buy a camera"},
-      //     {caption: "Go to amazon.com"},
-      //     {caption: "Search for camera"},
-      //     {caption: "Search for camera"},
-      //     // {text: "Use a camera"},
-      //     {caption: "Open the box containing the camera"},
-      //     {caption: "Take out the camera"},
-      //   ],
-      // };
-      // $("#left").html(card_template.render(left_data))
     </script>
   </body>
 </html>
