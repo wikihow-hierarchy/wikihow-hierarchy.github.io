@@ -62,6 +62,7 @@ main {
   height: calc(100% - 51px);
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .card {
