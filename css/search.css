@@ -1,0 +1,91 @@
+main {
+  overflow-y: scroll;
+}
+
+#search-form {
+  padding: 100px 0;
+  text-align: center;
+}
+
+#search-form-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#category-select {
+  width: 150px;
+  font-size: 14px;
+}
+
+#search-bar {
+  font-size: 18px;
+}
+
+#search-form button {
+  font-size: 18px;
+}
+
+#search-results-outer {
+  max-width: 960px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#search-message {
+  text-align: center;
+  padding: 10px 0;
+}
+
+#search-results {
+  display: flex;
+}
+
+.search-result-column-outer {
+  width: calc((100% - 30px) / 3);
+  padding: 15px 0;
+}
+
+.search-result-column-outer + .search-result-column-outer {
+  margin-left: 15px;
+}
+
+.search-result-column {
+  width: 100%;
+}
+
+.task-card {
+  display: flex;
+  text-decoration: none;
+  color: rgba(44, 44, 44, 1);
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  transition: all 0.1s;
+}
+
+.task-card:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.task-card:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.task-str {
+  transition: all 0.1s;
+  font-weight: bold;
+  flex: 1;
+}
+
+.task-card:hover .task-str {
+  color: red;
+}
+
+.task-id {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 5px;
+}
+
+.task-id::before {
+  content: "#";
+}

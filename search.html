@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/basic.css" />
+    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/jsrender.min.js"></script>
+    <script src="vendor/js/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div id="title">
+        <a href="/">WikiHow Hierarchy - Search</a>
+      </div>
+      <div class="separator"></div>
+      <a class="link" href="/paper/Wikihow_Hierarchy_Discovery.pdf" target="_blank">Paper</a>
+      <a class="link" href="/contact.html">Contact</a>
+      <a class="link" href="/about.html">About</a>
+      <div class="separator"></div>
+      <a class="link" href="/">I'm feeling lucky!</a>
+      <div class="separator"></div>
+    </nav>
+    <main>
+      <form id="search-form" action="search.html">
+        <span id="search-form-title">Search WikiHow:</span>
+        <select id="category-select" name="category">
+          <option value="all">All Categories</option>
+        </select>
+        <input id="search-bar" name="search" />
+        <button type="submit">Search!</button>
+      </form>
+      <div id="search-results-outer">
+        <div id="search-message" style="display: none">Showing top <span id="search-item-count">1000</span> results...</div>
+        <div id="search-results">
+          <div class="search-result-column-outer">
+            <div class="search-result-column" id="search-result-column-1"></div>
+          </div>
+          <div class="search-result-column-outer">
+            <div class="search-result-column" id="search-result-column-2"></div>
+          </div>
+          <div class="search-result-column-outer">
+            <div class="search-result-column" id="search-result-column-3"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script id="category-option" type="text/x-jsrender">
+      <option value="{{:id}}">{{:name}}</option>
+    </script>
+    <script id="task-card" type="text/x-jsrender">
+      <a class="task-card" id="{{:elem_id}}" href="/index.html?task_id={{:task_id}}">
+        <div class="task-str">{{:task}}</div>
+        <div class="task-id">{{:task_id}}</div>
+      </a>
+    </script>
+    <script src="js/dataset.js"></script>
+    <script src="js/search.js"></script>
+  </body>
+</html>
