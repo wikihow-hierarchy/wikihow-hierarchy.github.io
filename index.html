@@ -34,14 +34,38 @@
       </form>
     </nav>
     <main>
-      <div id="left">
-        <div id="left-inner"></div>
+      <svg id="base-canvas"></svg>
+      <div id="left" class="card-column">
+        <div id="left-inner" class="card-column-inner"></div>
       </div>
-      <svg id="line-canvas"></svg>
-      <div id="right">
-        <div id="right-inner"></div>
+      <svg id="left-line-canvas" class="line-canvas"></svg>
+      <div id="middle" class="card-column">
+        <div id="middle-inner" class="card-column-inner"></div>
+      </div>
+      <svg id="right-line-canvas" class="line-canvas"></svg>
+      <div id="right" class="card-column">
+        <div id="right-inner" class="card-column-inner"></div>
       </div>
     </main>
+    <script id="history-card" type="text/x-jsrender">
+      <div class="card history-card" id="{{:elem_id}}">
+        <div class="card-right">
+          <div style="margin-bottom: 5px">
+            <i class="fa fa-caret-left"></i>
+            Back
+          </div>
+          <div class="card-header">
+            <div class="card-title">{{:title}}</div>
+            <div class="card-id">
+              <div>{{:task_id}}</div>
+            </div>
+            <div class="card-section-caption-anchor">
+              <span class="card-section-caption-anchor-circle active"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
     <script id="card" type="text/x-jsrender">
       <div class="card" id="{{:elem_id}}">
         <div class="card-left">

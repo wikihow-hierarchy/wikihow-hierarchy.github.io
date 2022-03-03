@@ -19,11 +19,26 @@ nav {
 
 #title {
   font-weight: bold;
+  font-size: 18px;
   padding: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgba(44, 44, 44, 1);
 }
 
 nav .link {
   padding: 0 10px;
+  transition: all 0.1s;
+}
+
+nav .link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+nav .link:active {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 nav .separator {
@@ -73,6 +88,21 @@ main {
   display: flex;
 }
 
+.card.history-card {
+  width: 300px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.card.history-card:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.card.history-card:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .card-left {
   width: 15px;
   display: flex;
@@ -83,6 +113,7 @@ main {
 .card-left-anchor {
   display: block;
   position: relative;
+  top: 11px;
   left: -8px;
   height: 10px;
   width: 10px;
@@ -100,10 +131,18 @@ main {
   padding-right: 10px;
 }
 
+.history-card .card-header {
+  padding: 0;
+}
+
 .card-title {
   font-weight: bold;
   font-size: 32px;
   flex: 1;
+}
+
+.history-card .card-title {
+  font-size: 24px;
 }
 
 .card-id {
@@ -119,6 +158,10 @@ main {
 
 .card-id div::before {
   content: "#";
+}
+
+.history-card .card-id div {
+  font-size: 24px;
 }
 
 .card-tags {
@@ -209,25 +252,43 @@ main {
   opacity: 1;
 }
 
-#left, #right {
-  padding: 0 10px;
+.history-card .card-section-caption-anchor-circle.active {
+  left: 15px;
+}
+
+.card-column {
+  padding: 0 20px;
   overflow-y: scroll;
 }
 
-#left-inner, #right-inner {
-  min-height: 100%;
+.card-column-inner {
+  min-height: calc(100% - 40px);
   padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-#line-canvas {
+.line-canvas {
   width: 170px;
   height: 100%;
-  margin-left: -10px;
+  margin-left: -20px;
 }
 
-#right {
-  margin-left: -10px;
+.line-canvas + .card-column {
+  margin-left: -20px;
+}
+
+#middle .card {
+  border: 2px solid rgba(0, 0, 0, 1);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+#base-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
