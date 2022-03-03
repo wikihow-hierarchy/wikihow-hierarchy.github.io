@@ -31,7 +31,7 @@ class Dataset {
       elem_id: `${caption_id_prefix}-card`,
       task_id: datapoint.task_id,
       tags: task["category"].map((c) => {
-        return {name: this.category_list[c]};
+        return {id: c, name: this.category_list[c]};
       }),
       captions: task["caption"].map((c) => {
         if (Number.isInteger(c)) {

@@ -99,17 +99,20 @@ main {
 
 .card-tag {
   transition: all 0.1s;
+  text-decoration: none;
+  color: rgba(44, 44, 44, 1);
   display: block;
   line-height: 25px;
   font-size: 14px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 0 8px;
   background-color: rgba(0, 0, 0, 0.00);
-  cursor: default;
+  cursor: pointer;
 }
 
 .card-tag:hover {
   background-color: rgba(0, 0, 0, 0.05);
+  color: red;
 }
 
 .card-tag:active {
