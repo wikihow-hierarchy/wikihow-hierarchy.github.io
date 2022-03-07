@@ -74,6 +74,10 @@ function search(parameters, dataset) {
     // Increment the count
     count += 1;
   });
+
+  // Set the search count
+  $("#search-item-count").text(count);
+  $("#search-message").attr("style", "display: block");
 }
 
 $(document).ready(function () {

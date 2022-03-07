@@ -41,6 +41,12 @@ nav .link:active {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+nav .link.active {
+  font-weight: bold;
+  color: red;
+  border-bottom: 2px solid red;
+}
+
 nav .separator {
   margin: 0 10px;
   border-left: 1px solid rgba(0, 0, 0, 0.5);
