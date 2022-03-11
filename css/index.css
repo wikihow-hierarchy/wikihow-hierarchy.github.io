@@ -121,7 +121,7 @@ main {
 
 .card-section-captions {
   margin-top: 20px;
-  list-style-position: inside;
+  list-style: none;
   padding-left: 0;
 }
 
