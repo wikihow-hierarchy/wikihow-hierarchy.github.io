@@ -32,6 +32,8 @@ class Visualizer {
   }
 
   visualize(datapoint, dataset) {
+    $("#middle").unbind("scroll");
+    $("#right").unbind("scroll");
     $("#curr-task-id").text(datapoint.task_id);
 
     // Push history
@@ -140,6 +142,7 @@ class Visualizer {
           .attr("y2", left_card_middle_y);
       }
     };
+    $("#middle").scroll(draw);
     draw();
   }
 
@@ -223,8 +226,8 @@ class Visualizer {
           .attr("y", text_y);
       });
     };
-    $("#right").unbind("scroll").scroll(draw);
-    $("#middle").unbind("scroll").scroll(draw);
+    $("#right").scroll(draw);
+    $("#middle").scroll(draw);
     draw();
   }
 }

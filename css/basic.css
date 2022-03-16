@@ -87,7 +87,12 @@ nav form input {
 
 main {
   width: 100%;
-  height: calc(100% - 51px);
+}
+
+footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  line-height: 45px;
+  text-align: center;
 }
 
 .mask {

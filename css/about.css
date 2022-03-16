@@ -1,0 +1,12 @@
+main {
+  max-width: 720px;
+  margin: 30px auto;
+}
+
+pre {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 100%;
+  overflow-x: scroll;
+  padding: 15px;
+}
