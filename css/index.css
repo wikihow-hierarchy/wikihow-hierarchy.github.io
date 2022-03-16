@@ -204,12 +204,12 @@ main {
 }
 
 .wikihow-link-holder a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
   color: red;
 }
 
 .wikihow-link-holder a:active {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   color: red;
 }
 
