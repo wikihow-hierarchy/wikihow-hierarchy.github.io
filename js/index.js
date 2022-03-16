@@ -3,24 +3,27 @@ const LINE_CANVAS_PADDING = 20;
 $(document).ready(function () {
   load_data(function (dataset) {
     let visualizer = new Visualizer();
-
-    function initialize() {
-      let query_string = window.location.search;
-      let url_params = new URLSearchParams(query_string);
-      if (url_params.has("task_id")) {
-        let task_id = url_params.get("task_id");
-        let step_id = url_params.has("step_id") ? url_params.get("step_id") : null;
-        let datapoint = new Datapoint(task_id, step_id, null);
-        visualizer.visualize(datapoint, dataset);
-      } else {
-        let curr_datapoint = dataset.sample_datapoint();
-        visualizer.visualize(curr_datapoint, dataset);
-      }
-    }
-
-    initialize();
+    initialize(visualizer, dataset);
   });
 });
+
+function initialize(visualizer, dataset) {
+  let query_string = window.location.search;
+  let url_params = new URLSearchParams(query_string);
+  if (url_params.has("task_id")) {
+    let task_id = url_params.get("task_id");
+    let step_id = url_params.has("step_id") ? url_params.get("step_id") : null;
+    let datapoint = new Datapoint(task_id, step_id, null);
+    visualizer.visualize(datapoint, dataset);
+  } else {
+    let curr_datapoint = dataset.sample_datapoint();
+    visualizer.visualize(curr_datapoint, dataset);
+  }
+
+  // Remove the loading mask
+  $("#loading-mask").removeClass("active");
+  setTimeout(() => $("#loading-mask").attr("style", "display: none"), 200);
+}
 
 class Visualizer {
   constructor() {

@@ -30,6 +30,8 @@ class Dataset {
       title: task["task"],
       elem_id: `${caption_id_prefix}-card`,
       task_id: datapoint.task_id,
+      has_url: task["url"] && true,
+      url: task["url"],
       tags: task["category"].map((c) => {
         return {id: c, name: this.category_list[c]};
       }),

@@ -89,3 +89,33 @@ main {
   width: 100%;
   height: calc(100% - 51px);
 }
+
+.mask {
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  z-index: 1024;
+  opacity: 0;
+}
+
+.mask.active {
+  opacity: 1;
+}
+
+.mask-inner {
+  width: 720px;
+  margin: auto;
+  color: white;
+  text-align: center;
+}
+
+.mask-inner a {
+  color: white;
+}

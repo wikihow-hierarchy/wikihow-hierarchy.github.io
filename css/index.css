@@ -4,6 +4,7 @@ main {
 }
 
 .card {
+  transition: all 0.1s;
   overflow-x: visible;
   margin: 10px 0;
   padding: 15px 0 10px;
@@ -177,6 +178,38 @@ main {
 .card-section-caption-anchor-circle.active {
   background-color: red;
   opacity: 1;
+}
+
+.wikihow-link-holder {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0 15px 7px;
+}
+
+.wikihow-link-holder a {
+  transition: all 0.1s;
+  display: inline-block;
+  padding: 0 10px;
+  line-height: 36px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+  color: rgba(44, 44, 44, 1);
+}
+
+.wikihow-link-holder a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: red;
+}
+
+.wikihow-link-holder a:active {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: red;
+}
+
+.wikihow-link-holder a i {
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .history-card .card-section-caption-anchor-circle.active {
