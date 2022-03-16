@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 main {
   max-width: 720px;
   margin: 30px auto;
