@@ -32,6 +32,7 @@ class Visualizer {
   }
 
   visualize(datapoint, dataset) {
+    $(window).off("resize");
     $("#middle").unbind("scroll");
     $("#right").unbind("scroll");
     $("#curr-task-id").text(datapoint.task_id);
@@ -99,7 +100,7 @@ class Visualizer {
 
       // Get d3 svg and clear the canvas
       let svg = d3.select("#left-line-canvas");
-      svg.selectAll('*').remove();
+      svg.selectAll("*").remove();
 
       // Get middle element position
       let middle_elem = $("#middle-card .card-left-anchor");
@@ -142,6 +143,7 @@ class Visualizer {
           .attr("y2", left_card_middle_y);
       }
     };
+    $(window).resize(draw);
     $("#middle").scroll(draw);
     draw();
   }
@@ -191,7 +193,7 @@ class Visualizer {
 
       // Get d3 svg and clear the canvas
       let svg = d3.select("#right-line-canvas");
-      svg.selectAll('*').remove();
+      svg.selectAll("*").remove();
 
       // Get middle element
       let middle_elem = $(`#middle-caption-${step_id} .card-section-caption-anchor-circle`);
@@ -226,6 +228,7 @@ class Visualizer {
           .attr("y", text_y);
       });
     };
+    $(window).resize(draw);
     $("#right").scroll(draw);
     $("#middle").scroll(draw);
     draw();

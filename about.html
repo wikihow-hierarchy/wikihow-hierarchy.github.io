@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WikiHow Hierarchy - About</title>
+    <title>wikiHow Hierarchy - About</title>
     <link rel="stylesheet" href="css/basic.css" />
     <link rel="stylesheet" href="css/about.css" />
     <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
@@ -12,7 +12,7 @@
   <body>
     <nav>
       <div id="title">
-        <a href="/">WikiHow Hierarchy - About</a>
+        <a href="/">wikiHow Hierarchy - About</a>
       </div>
       <div class="separator"></div>
       <a class="link active" href="/about.html">About</a>
@@ -21,28 +21,29 @@
       <div class="separator"></div>
     </nav>
     <main>
-      <h2>WikiHow Hierarchy</h2>
-      <p>
-        When you're following instructions, you may want to see more detailed instructions about a step.
-        In the terms of natural language processing, this reflects the hierarchical relationship among procedural events, where each step can have many sub-steps.
-      </p>
-      <p>
-        This web demo accompanies our ACL 2022 paper (link) and lets you explore the procedural hierarchy discovered from wikiHow.
-        You can start with a random procedure by clicking “I'm feeling lucky” or go for a particular one using the search bar.
-        You can expand upon the steps when available to see more detailed instructions, which are predicted by our models with a confidence score.
-      </p>
-      <h3>
-        Disclaimer:
-      </h3>
-      <p>
-        all instructions from this demo come from wikiHow as is.
-        The views and opinions contained herein should not be interpreted as representing the authors of this work. Due to considerations of efficiency and the active updates of wikiHow, only a subset of wikiHow articles is included in this demo.
-        The instructions are for reference only and are not to serve as legal, financial, or medical advice.
-      </p>
-      <h3>
-        If you use our work, please cite:
-      </h3>
-      <pre>
+      <div class="main-inner">
+        <h2>wikiHow Hierarchy</h2>
+        <p>
+          When you're following instructions, you may want to see more detailed instructions about a step.
+          In the terms of natural language processing, this reflects the hierarchical relationship among procedural events, where each step can have many sub-steps.
+        </p>
+        <p>
+          This web demo accompanies our <a href="/paper/Wikihow_Hierarchy_Discovery.pdf" target="_blanks">ACL 2022 paper</a> and lets you explore the procedural hierarchy discovered from wikiHow.
+          You can start with a random procedure by clicking <a href="/">"I'm feeling lucky"</a> or go for a particular one using the search bar.
+          You can expand upon the steps when available to see more detailed instructions, which are predicted by our models with a confidence score.
+        </p>
+        <h3>
+          Disclaimer:
+        </h3>
+        <p>
+          All instructions from this demo come from <a href="www.wikihow.com" target="_blank">wikiHow</a> as is.
+          The views and opinions contained herein should not be interpreted as representing the authors of this work. Due to considerations of efficiency and the active updates of wikiHow, only a subset of wikiHow articles is included in this demo.
+          The instructions are for reference only and are not to serve as legal, financial, or medical advice.
+        </p>
+        <h3>
+          If you use our work, please cite:
+        </h3>
+        <pre>
 @inproceedings{zhou-etal-2022-show,
   title = "Show Me More Details: Discovering Hierarchies of Procedures from Semi-structured Web Data",
   author = "Zhou, Shuyan and
@@ -58,9 +59,18 @@
   address = "Dublin, Ireland",
   publisher = "Association for Computational Linguistics"
 }</pre>
-      <p>
-        For any inquiry, please contact <a href="mailto:shuyanzh@andrew.cmu.edu">Shuyanzhou &langle;shuyanzh@andrew.cmu.edu&rangle;</a> or <a href="mailto:zharry@seas.upenn.edu">Li Zhang &langle;zharry@seas.upenn.edu&rangle;</a>.
-      </p>
+        <p>
+          For any inquiry, please contact
+          <ul>
+            <li>
+              <a href="mailto:shuyanzh@andrew.cmu.edu">Shuyanzhou &langle;shuyanzh@andrew.cmu.edu&rangle;</a> or
+            </li>
+            <li>
+              <a href="mailto:zharry@seas.upenn.edu">Li Zhang &langle;zharry@seas.upenn.edu&rangle;</a>.
+            </li>
+          </ul>
+        </p>
+      </div>
     </main>
     <footer>&copy; 2022 Ziyang Li; licensed under CC BY-NC 4.0</footer>
   </body>

@@ -1,10 +1,11 @@
-body {
-  position: relative;
+main {
+  height: calc(100% - 97px);
+  overflow-y: scroll;
 }
 
-main {
+.main-inner {
   max-width: 720px;
-  margin: 30px auto;
+  margin: 50px auto;
 }
 
 pre {
@@ -13,4 +14,8 @@ pre {
   width: 100%;
   overflow-x: scroll;
   padding: 15px;
+}
+
+h3 {
+  margin-top: 50px;
 }
