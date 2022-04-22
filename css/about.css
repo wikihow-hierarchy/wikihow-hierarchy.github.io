@@ -1,6 +1,13 @@
 main {
   height: calc(100% - 97px);
   overflow-y: scroll;
+  padding: 0 20px;
+  width: auto;
+}
+
+nav {
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .main-inner {

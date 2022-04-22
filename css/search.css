@@ -1,6 +1,21 @@
+body {
+  width: 100%;
+  overflow-x: scroll;
+  position: absolute;
+}
+
+nav {
+  min-width: 960px;
+}
+
 main {
+  min-width: 960px;
   height: calc(100% - 97px);
   overflow-y: scroll;
+}
+
+footer {
+  min-width: 960px;
 }
 
 #search-form {

@@ -1,11 +1,23 @@
 body {
+  width: 100%;
+  overflow-x: scroll;
+  position: absolute;
+}
+
+nav {
   min-width: 1600px;
 }
 
 main {
   display: flex;
   justify-content: center;
+  min-width: 1600px;
+  width: 100%;
   height: calc(100% - 97px);
+}
+
+footer {
+  min-width: 1600px;
 }
 
 .card {
@@ -14,12 +26,12 @@ main {
   margin: 10px 0;
   padding: 15px 0 10px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  width: 500px;
+  width: 450px;
   display: flex;
 }
 
 .card.history-card {
-  width: 300px;
+  width: 250px;
   padding: 15px;
   cursor: pointer;
   transition: all 0.1s;
@@ -67,12 +79,12 @@ main {
 
 .card-title {
   font-weight: bold;
-  font-size: 32px;
+  font-size: 26px;
   flex: 1;
 }
 
 .history-card .card-title {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .card-id {
@@ -82,7 +94,7 @@ main {
 }
 
 .card-id div {
-  font-size: 30px;
+  font-size: 24px;
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -91,7 +103,7 @@ main {
 }
 
 .history-card .card-id div {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .card-tags {
@@ -109,7 +121,7 @@ main {
   color: rgba(44, 44, 44, 1);
   display: block;
   line-height: 25px;
-  font-size: 14px;
+  font-size: 12px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 0 8px;
   background-color: rgba(0, 0, 0, 0.00);
@@ -197,7 +209,7 @@ main {
   padding: 0 10px;
   line-height: 30px;
   border: 1px solid rgba(0, 0, 0, 0.5);
-  font-size: 14px;
+  font-size: 12px;
   background-color: rgba(0, 0, 0, 0);
   text-decoration: none;
   color: rgba(44, 44, 44, 1);
@@ -236,7 +248,7 @@ main {
 }
 
 .line-canvas {
-  width: 170px;
+  width: 140px;
   height: 100%;
   margin-left: -20px;
 }

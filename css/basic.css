@@ -26,7 +26,7 @@ nav {
 
 #title {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   padding: 0 15px;
 }
 
@@ -64,7 +64,7 @@ nav form {
 }
 
 nav form button {
-  font-size: 16px;
+  font-size: 12px;
   margin: 10px 0;
   line-height: 30px;
 }
@@ -76,7 +76,7 @@ nav form input {
   padding: 5px;
   height: calc(100% - 10px);
   line-height: 30px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #nav-search-form {
